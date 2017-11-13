@@ -1,0 +1,29 @@
+{
+  "name": "react-todo-list",
+  "version": "1.0.0",
+  "description": "React todo list demo",
+  "main": "index.js",
+  "scripts": {
+    "dev-build": "webpack --config webpack.dev.config.js",
+    "dev": "webpack-dev-server --config webpack.dev.config.js --color --progress --hot"
+  },
+  "author": "biu",
+  "license": "BSD",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "react-hot-loader": "^3.1.2",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
+  }
+}
