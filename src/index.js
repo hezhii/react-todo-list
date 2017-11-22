@@ -1,29 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {AppContainer} from 'react-hot-loader';
-import {Provider} from 'react-redux';
+import { AppContainer } from 'react-hot-loader';
 
-import store from './redux/store';
-import List from './pages/List';
+import Router from './router';
+import './flexible';
 
-function renderWithHotReload(RootElement) {
+const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
-      <Provider store={store}>
-        {RootElement}
-      </Provider>
-    </AppContainer>,
-    document.getElementById('app')
-  )
-}
+      {Component}
+    </AppContainer>
+    , document.getElementById('root'));
+};
 
-// 初始化
-renderWithHotReload(<List/>);
-
-// 热更新
 if (module.hot) {
-  module.hot.accept('./pages/List', () => {
-    const List = require('./pages/List').default;
-    renderWithHotReload(<List/>);
+  module.hot.accept('./router', () => {
+    const Router = require('./router').default;
+    render(Router());
   });
 }
+
+render(Router());
