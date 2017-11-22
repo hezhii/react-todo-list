@@ -1,8 +1,27 @@
 const path = require('path');
 const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 const appDirectory = fs.realpathSync(process.cwd());
+
+const postcssOpts = {
+  // Necessary for external CSS imports to work
+  // https://github.com/facebookincubator/create-react-app/issues/2677
+  ident: 'postcss',
+  plugins: () => [
+    require('postcss-flexbugs-fixes'),
+    autoprefixer({
+      browsers: [
+        '>1%',
+        'last 4 versions',
+        'Firefox ESR',
+        'not ie < 9', // React doesn't support IE8 anyway
+      ],
+      flexbox: 'no-2009',
+    }),
+  ],
+};
 
 module.exports = {
   entry: [
@@ -18,6 +37,25 @@ module.exports = {
       test: /\.jsx?$/,
       use: ['babel-loader?cacheDirectory=true'],
       include: path.join(appDirectory, 'src')
+    }, {
+      test: /\.less$/,
+      use: [
+        'style-loader',
+        'css-loader',
+        {
+          loader: 'postcss-loader',
+          options: postcssOpts
+        },
+        'less-loader']
+    }, {
+      test: /\.css$/,
+      use: [
+        'style-loader',
+        'css-loader',
+        {
+          loader: 'postcss-loader',
+          options: postcssOpts
+        }]
     }]
   },
   plugins: [
