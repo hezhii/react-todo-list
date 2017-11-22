@@ -1,22 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {AppContainer} from 'react-hot-loader';
+import { AppContainer } from 'react-hot-loader';
 
-import BasicLayout from './layouts/BasicLayout';
+import Router from './router';
 
-const render = (RootElement) => {
+const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
-      <RootElement/>
+      {Component}
     </AppContainer>
     , document.getElementById('root'));
 };
 
 if (module.hot) {
-  module.hot.accept('./layouts/BasicLayout', () => {
-    const BasicLayout = require('./layouts/BasicLayout').default;
-    render(BasicLayout);
+  module.hot.accept('./router', () => {
+    const Router = require('./router').default;
+    render(Router());
   });
 }
 
-render(BasicLayout);
+render(Router());
