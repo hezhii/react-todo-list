@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
 import Router from './router';
+import './flexible';
 
 const render = (Component) => {
   ReactDOM.render(
